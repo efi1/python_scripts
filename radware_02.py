@@ -99,9 +99,6 @@ class AddresDetails(unittest.TestCase):
         # comparison betwen input address and the address result
         req_by_address_data_set = self.req_by_address
         address_result_list = req_by_address_data_set[4]
-        input_address_list = req_by_address_data_set [6]
-        address = req_by_address_data_set[5]
-        address_result = req_by_address_data_set[0]
         for i in address_result_list:
             self.assertIn(i, input_address_list, "\n" + 'request address and result address comparison:\n' + \
                           "requested address: " + address + '\n' + "result address:    " + address_result)
