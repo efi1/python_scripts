@@ -57,7 +57,6 @@ class AddresDetails(unittest.TestCase):
         global langtitude1
         global address_result_list
         global input_address_list
-        # global address_results
         responseJson = self.test_geo_request_status_check()
         if responseJson is not None:
             address_result = responseJson.get("results")[0].get("formatted_address")
@@ -76,7 +75,7 @@ class AddresDetails(unittest.TestCase):
         #compare search results by address against search results by place_id
     def test_request_by_PlacID(self):
         data_set = self.req_by_address
-        address_result = data_set[0]
+        # address_result = data_set[0]
         place_id = data_set[3]
         responseJson = self.test_geo_request_status_check(place_id)
         address_by_place_id = responseJson.get("result").get("adr_address")
@@ -89,9 +88,10 @@ class AddresDetails(unittest.TestCase):
         lattitude = location.get('lat')
         langtitude = location.get('lng')
         place_id_result = responseJson.get("result").get("place_id")
-        self.assertEqual({address_by_place_id, lattitude, langtitude, \
-                          place_id}, {address_result, lattitude1, langtitude1, place_id},\
-                         "compare query results, uses an address as input and one which uses place_id as input ")
+        self.assertEqual((address_by_place_id, lattitude, langtitude),\
+                         (address_result, lattitude1, langtitude1), \
+                         'failed when compared query results, which uses an address as input against\
+                          one which uses place_id as input ')
         return [address_by_place_id, lattitude, langtitude, place_id]
 
 
